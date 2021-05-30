@@ -8,15 +8,16 @@
 </head>
 <body>
 <div class="container">
+    <%@include file="fragments/navbar.jsp"%>
     <div class="grid-container">
         <div class="grid-item car-item">
         <c:forEach items="${cars}" var="car" >
-            <img src="${c.photo}" class="car-image" />
-            <div>   <fmt:message key="car.name" /><span >  </span><a text="${car.name}"> </a></div>
-            <div>   <fmt:message key="car.capacity" /><span >  </span><a text="${car.capacity}"> </a></div>
-            <div>   <fmt:message key="car.carType" /><span >  </span><a text="${car.carType}"> </a></div>
+            <img src="${car.photo}" class="car-image" />
+            <div>   <fmt:message key="car.name" /><span >  </span><span>${car.name} </span></div>
+            <div>   <fmt:message key="car.capacity" /><span >  </span><span > ${car.capacity}</span></div>
+            <div>   <fmt:message key="car.carType" /><span >  </span><span>${car.carType} </span></div>
             <div>
-            <a class="btn btn-outline-primary" href="/cars/change-activity?car_id=${c.id}">
+            <a class="btn btn-outline-primary" href="/cars/change-activity?car_id=${car.id}">
                     <c:if test="${car.active}">
                         <fmt:message key="deleteCar.button"/>
                     </c:if>

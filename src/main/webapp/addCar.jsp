@@ -6,7 +6,9 @@
 
   <title>Title</title>
 </head>
-<body>
+<div>
+<div class="container">
+<%@include file="fragments/navbar.jsp"%>
 <form method="POST">
   <c:if test="${!empty requestScope.creationError}">
     <div class="alert-danger error-message" >
@@ -52,6 +54,7 @@
   <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block btn-lg"><fmt:message key="submit.button"/></button>
   </div>
+</div>
 </form>
 </body>
 </html>

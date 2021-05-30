@@ -11,4 +11,5 @@ public interface CarService {
    boolean createCar(CarDto carDto);
    Optional<Car> getCarById(Long id);
    boolean changeCarActivity(Car car);
+   List<Car> getAllActiveCars();
 }

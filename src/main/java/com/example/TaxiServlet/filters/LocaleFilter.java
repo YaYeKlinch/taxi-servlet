@@ -1,5 +1,6 @@
 package com.example.TaxiServlet.filters;
 
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -35,5 +36,13 @@ public class LocaleFilter implements Filter {
 
         filterChain.doFilter(req, res);
 
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) {
+    }
+
+    @Override
+    public void destroy() {
     }
 }

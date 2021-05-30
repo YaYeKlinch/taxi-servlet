@@ -6,9 +6,10 @@ import com.example.TaxiServlet.entity.Car;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CarDaoImpl extends JDBCDao<Car> implements CarDao {
-
+    private static final String ALL_CARS_BY_ACTIVE = "SELECT * FROM car WHERE active=true";
     public CarDaoImpl(Connection connection) {
         super(
                 connection,
@@ -42,5 +43,16 @@ public class CarDaoImpl extends JDBCDao<Car> implements CarDao {
         statement.setString(4, entity.getCarType().name());
         statement.setBoolean(5, entity.isActive());
         statement.setInt(6, entity.getCapacity());
+    }
+
+    @Override
+    public List<Car> getActiveCars() {
+        List<Car> cars = null;
+        try (PreparedStatement statement = connection.prepareStatement(ALL_CARS_BY_ACTIVE)) {
+            cars = getAllFromStatement(statement);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return cars;
     }
 }

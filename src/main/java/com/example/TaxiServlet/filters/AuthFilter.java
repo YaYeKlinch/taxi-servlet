@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/cars/*", "/add-car" })
+@WebFilter(urlPatterns = {"/cars/*", "/add-car","/active-cars" })
 public class AuthFilter implements Filter {
 
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -25,6 +29,11 @@ public class AuthFilter implements Filter {
 
         filterChain.doFilter(request, response);
 
+
+    }
+
+    @Override
+    public void destroy() {
 
     }
 }

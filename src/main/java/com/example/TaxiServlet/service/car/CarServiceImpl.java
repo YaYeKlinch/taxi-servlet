@@ -50,4 +50,11 @@ public class CarServiceImpl implements CarService{
         }
 
     }
+
+    @Override
+    public List<Car> getAllActiveCars() {
+        try ( CarDao carDao = daoFactory.createCarDao()){
+            return carDao.getActiveCars();
+        }
+    }
 }
