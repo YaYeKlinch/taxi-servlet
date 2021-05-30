@@ -25,7 +25,8 @@
                         <fmt:message key="returnCar.button"/>
                     </c:if>
             </a>
-                </c:forEach></div>
+                </c:forEach>
+            </div>
         </div>
     </div>
 </div>
