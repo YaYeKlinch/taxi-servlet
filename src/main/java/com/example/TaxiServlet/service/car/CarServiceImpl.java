@@ -2,7 +2,6 @@ package com.example.TaxiServlet.service.car;
 
 import com.example.TaxiServlet.dao.DaoFactory;
 import com.example.TaxiServlet.dao.car.CarDao;
-import com.example.TaxiServlet.dao.user.UserDao;
 import com.example.TaxiServlet.entity.Car;
 import com.example.TaxiServlet.entity.dto.CarDto;
 import com.example.TaxiServlet.entity.enums.CarStatus;
@@ -43,10 +42,10 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public boolean changeCarActivity(Car car) {
+    public void changeCarActivity(Car car) {
         try (CarDao carDao = daoFactory.createCarDao()) {
             car.setActive(!car.isActive());
-            return carDao.update(car);
+            carDao.update(car);
         }
 
     }
@@ -55,6 +54,14 @@ public class CarServiceImpl implements CarService{
     public List<Car> getAllActiveCars() {
         try ( CarDao carDao = daoFactory.createCarDao()){
             return carDao.getActiveCars();
+        }
+    }
+
+    @Override
+    public void changeCarStatus(CarStatus carStatus , Car car) {
+        try (CarDao carDao = daoFactory.createCarDao()) {
+            car.setCarStatus(carStatus);
+            carDao.update(car);
         }
     }
 }
