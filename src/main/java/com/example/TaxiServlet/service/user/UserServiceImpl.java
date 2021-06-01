@@ -36,6 +36,13 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public Optional<User> getUserById(long userId) {
+        try (UserDao userDao = daoFactory.createUserDao()) {
+            return userDao.findById(userId);
+        }
+    }
+
     private boolean emailExists(String email, UserDao userDao) {
         return userDao.findByUsername(email).isPresent();
     }

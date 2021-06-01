@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface UserService {
     boolean registerUser(UserDto userDto);
     Optional< User> getUser(String email);
+    Optional<User> getUserById(long userId);
 }

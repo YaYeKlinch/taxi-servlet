@@ -10,7 +10,7 @@ public class TaxiOrder {
     private LocalDateTime time;
     private long carId;
     private long userId;
-    private long distance;
+    private double distance;
     private long costs;
 
     public TaxiOrder(){
@@ -92,11 +92,11 @@ public class TaxiOrder {
         this.userId = userId;
     }
 
-    public long getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(long distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 

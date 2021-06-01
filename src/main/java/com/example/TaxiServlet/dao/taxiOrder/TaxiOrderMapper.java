@@ -14,7 +14,7 @@ public class TaxiOrderMapper implements Mapper<TaxiOrder> {
         taxiOrder.setArrival(rs.getString("taxi_order.arrival"));
         taxiOrder.setDeparture(rs.getString("taxi_order.departure"));
         taxiOrder.setCosts(rs.getLong("taxi_order.costs"));
-        taxiOrder.setDistance(rs.getLong("taxi_order.distance"));
+        taxiOrder.setDistance(rs.getDouble("taxi_order.distance"));
         taxiOrder.setCarId(rs.getLong("taxi_order.car_id"));
         taxiOrder.setUserId(rs.getLong("taxi_order.user_id"));
         taxiOrder.setTime(rs.getTimestamp("taxi_order.time").toLocalDateTime());

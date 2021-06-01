@@ -19,8 +19,8 @@
                              <c:if test="${sessionScope.LoggedUser.role.name()=='USER'}">
                                   <div><fmt:message key="car.carStatus"/><span>${car.carStatus} </span></div>
                           </c:if>
-                ${car.id}
-                <div><fmt:message key="car.carType"/>
+                <c:if test="${sessionScope.LoggedUser.role.name()=='ADMIN'}">
+                 <div><fmt:message key="car.carType"/>
                     <form action="/active-cars/change-status">
                         <input type="hidden" name="car_id" value="${car.id}">
                         <label>
@@ -31,12 +31,14 @@
                             </select>
                         </label>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg"><fmt:message
-                                    key="submit.button"/></button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg"><fmt:message key="submit.button"/></button>
                         </div>
-
                     </form>
                 </div>
+                </c:if>
+                <c:if test="${car.carStatus.name()=='READY'}">
+                <a class="btn btn-outline-primary" href="/active-cars/make-order?car_id=${car.id}"><fmt:message key="makeOrder.button"/></a>
+                </c:if>
             </c:forEach>
         </div>
     </div>
