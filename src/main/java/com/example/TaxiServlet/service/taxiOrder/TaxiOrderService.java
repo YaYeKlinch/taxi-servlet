@@ -11,4 +11,6 @@ public interface TaxiOrderService {
     List<OrderCarUserDto> getAllTaxiOrders(int count, int size);
     List<OrderCarUserDto> getAllTaxiOrdersByUser(long user_id);
     long getNumberOfOrders();
+    List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort);
+    List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size,String sort);
 }

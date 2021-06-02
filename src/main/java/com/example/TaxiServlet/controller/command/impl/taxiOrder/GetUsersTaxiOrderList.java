@@ -18,6 +18,6 @@ public class GetUsersTaxiOrderList implements Command {
         User user = getUserId(request);
         List<OrderCarUserDto> taxiOrders = taxiOrderService.getAllTaxiOrdersByUser(user.getId());
         request.setAttribute("orders", taxiOrders);
-        return "userOrders.jsp";
+        return "usersOrders.jsp";
     }
 }

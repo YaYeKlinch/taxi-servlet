@@ -14,11 +14,30 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
         " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
         " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
         " taxi_order.user_id = user.id LIMIT ?,? ";
+    private static final String GET_CARS_USERS_BY_ORDER_SORTED_BY_TIME_DESC = "SELECT taxi_order.time , taxi_order.arrival," +
+            " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
+            " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
+            " taxi_order.user_id = user.id ORDER BY taxi_order.time DESC LIMIT ?,? ";
+
+    private static final String GET_CARS_USERS_BY_ORDER_SORTED_BY_TIME_ASC = "SELECT taxi_order.time , taxi_order.arrival," +
+            " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
+            " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
+            " taxi_order.user_id = user.id ORDER BY taxi_order.time ASC LIMIT ?,? ";
+
+    private static final String GET_CARS_USERS_BY_ORDER_SORTED_BY_COSTS_ASC = "SELECT taxi_order.time , taxi_order.arrival," +
+            " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
+            " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
+            " taxi_order.user_id = user.id ORDER BY taxi_order.costs ASC LIMIT ?,? ";
+
+    private static final String GET_CARS_USERS_BY_ORDER_SORTED_BY_COSTS_DESC = "SELECT taxi_order.time , taxi_order.arrival," +
+            " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
+            " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
+            " taxi_order.user_id = user.id ORDER BY taxi_order.costs DESC LIMIT ?,? ";
 
     private static final String GET_CARS_USERS_BY_ORDER_BY_USER_ID = "SELECT taxi_order.time , taxi_order.arrival," +
             " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
             " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
-            " taxi_order.user_id = user.id WHERE user.id = ?";
+            " taxi_order.user_id = user.id WHERE user.id = ? ";
     public TaxiOrderDaoImpl(Connection connection) {
         super(
                 connection,
@@ -56,23 +75,6 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     }
 
     @Override
-    public List<OrderCarUserDto> getOrderCarUserList(int count, int size) {
-        Mapper<OrderCarUserDto> orderCarUserDtoMapper = new OrderCarUserDtoMapper();
-        List<OrderCarUserDto> orderCarUserDtoList = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(GET_CARS_USERS_BY_ORDER)) {
-            statement.setInt(1, count);
-            statement.setInt(2, size);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                orderCarUserDtoList.add(orderCarUserDtoMapper.extractFromResultSet(rs));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return orderCarUserDtoList;
-    }
-
-    @Override
     public List<OrderCarUserDto> getOrderCarUserListByUser(long user_id) {
         Mapper<OrderCarUserDto> orderCarUserDtoMapper = new OrderCarUserDtoMapper();
         List<OrderCarUserDto> orderCarUserDtoList = new ArrayList<>();
@@ -87,4 +89,45 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
         }
         return orderCarUserDtoList;
     }
+    @Override
+    public List<OrderCarUserDto> getOrderCarUserNotSortedList(int count, int size) {
+        return getOrderCarUsersDtoList(count,size,GET_CARS_USERS_BY_ORDER);
+    }
+
+    @Override
+    public List<OrderCarUserDto> getOrderCarUserListSortedByDataDesc(int count, int size) {
+        return getOrderCarUsersDtoList(count,size, GET_CARS_USERS_BY_ORDER_SORTED_BY_TIME_DESC);
+    }
+
+    @Override
+    public List<OrderCarUserDto> getOrderCarUserListSortedByDataAsc(int count, int size) {
+        return getOrderCarUsersDtoList(count,size, GET_CARS_USERS_BY_ORDER_SORTED_BY_TIME_ASC);
+    }
+
+    @Override
+    public List<OrderCarUserDto> getOrderCarUserListSortedByCostsAsc(int count, int size) {
+        return getOrderCarUsersDtoList(count,size, GET_CARS_USERS_BY_ORDER_SORTED_BY_COSTS_ASC);
+    }
+
+    @Override
+    public List<OrderCarUserDto> getOrderCarUserListSortedByCostsDesc(int count, int size) {
+        return getOrderCarUsersDtoList(count,size, GET_CARS_USERS_BY_ORDER_SORTED_BY_COSTS_DESC);
+    }
+
+
+    private List<OrderCarUserDto> getOrderCarUsersDtoList(int count, int size , String query){
+        Mapper<OrderCarUserDto> orderCarUserDtoMapper = new OrderCarUserDtoMapper();
+        List<OrderCarUserDto> orderCarUserDtoList = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, count);
+            statement.setInt(2, size);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                orderCarUserDtoList.add(orderCarUserDtoMapper.extractFromResultSet(rs));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return orderCarUserDtoList;
+    };
 }

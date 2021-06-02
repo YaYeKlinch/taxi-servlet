@@ -1,7 +1,6 @@
 package com.example.TaxiServlet.service.taxiOrder;
 
 import com.example.TaxiServlet.dao.DaoFactory;
-import com.example.TaxiServlet.dao.car.CarDao;
 import com.example.TaxiServlet.dao.taxiOrder.TaxiOrderDao;
 import com.example.TaxiServlet.entity.TaxiOrder;
 import com.example.TaxiServlet.entity.dto.OrderCarUserDto;
@@ -31,7 +30,7 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     @Override
     public List<OrderCarUserDto> getAllTaxiOrders(int count, int size) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
-            return  taxiOrderDao.getOrderCarUserList(count , size);
+            return  taxiOrderDao.getOrderCarUserNotSortedList(count , size);
         }
     }
 
@@ -46,6 +45,26 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     public long getNumberOfOrders() {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
             return  taxiOrderDao.count();
+        }
+    }
+
+    @Override
+    public List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort) {
+        try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
+            if("DESC".equals(sort)){
+                return  taxiOrderDao.getOrderCarUserListSortedByDataDesc(count,size);
+            }
+          return  taxiOrderDao.getOrderCarUserListSortedByDataAsc(count,size);
+        }
+    }
+
+    @Override
+    public List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size, String sort) {
+        try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
+            if("DESC".equals(sort)){
+                return  taxiOrderDao.getOrderCarUserListSortedByCostsDesc(count,size);
+            }
+            return  taxiOrderDao.getOrderCarUserListSortedByCostsAsc(count,size);
         }
     }
 }

@@ -8,6 +8,10 @@ import com.example.TaxiServlet.entity.dto.TaxiOrderDto;
 import java.util.List;
 
 public interface TaxiOrderDao extends GenericDao<TaxiOrder> {
-    List<OrderCarUserDto> getOrderCarUserList(int count, int size);
+    List<OrderCarUserDto> getOrderCarUserNotSortedList(int count, int size);
     List<OrderCarUserDto>getOrderCarUserListByUser(long user_id);
+    List<OrderCarUserDto> getOrderCarUserListSortedByDataDesc(int count, int size);
+    List<OrderCarUserDto> getOrderCarUserListSortedByDataAsc(int count, int size);
+    List<OrderCarUserDto> getOrderCarUserListSortedByCostsAsc(int count, int size);
+    List<OrderCarUserDto> getOrderCarUserListSortedByCostsDesc(int count, int size);
 }

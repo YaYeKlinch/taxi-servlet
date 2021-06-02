@@ -12,23 +12,33 @@
   <%@include file="fragments/navbar.jsp"%>
   <table class="table">
     <tr>
-      <th >  <fmt:message key="departure.order" /></th>
-      <th >  <fmt:message key="arrival.order" /></th>
       <th>  <fmt:message key="time.order" /></th>
       <th>  <fmt:message key="order.costs" /></th>
+      <th >  <fmt:message key="departure.order" /></th>
+      <th >  <fmt:message key="arrival.order" /></th>
       <th>  <fmt:message key="order.car" /></th>
       <th>  <fmt:message key="order.username" /></th>
     </tr>
+    <tbody>
+    <td>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=Time" ><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=Time" ><fmt:message key="sort.asc"/></a>
+    </td>
+    <td>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=costs" ><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=costs" ><fmt:message key="sort.asc"/></a>
+    </td>
     <c:forEach items="${orders}" var="o" >
       <tr>
-        <td>${o.departure}</td>
-        <td>${o.arrival}</td>
         <td>${o.time}</td>
         <td>${o.costs}</td>
+        <td>${o.departure}</td>
+        <td>${o.arrival}</td>
         <td>${o.carName}</td>
         <td>${o.username}</td>
       </tr>
     </c:forEach>
+    </tbody>
   </table>
   <div class="clearfix">
     <div class="hint-text"><fmt:message key="pagination.label.showing"/> <b><c:out
