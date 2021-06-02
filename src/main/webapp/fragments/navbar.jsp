@@ -12,12 +12,14 @@
         <li class="nav-item">
             <a class="nav-link" href="/user-orders"><fmt:message key="myOrders.page"/></a>
         </li>
+        <c:if test="${sessionScope.LoggedUser.role.name()=='ADMIN'}">
         <li class="nav-item">
             <a class="nav-link" href="/all-orders"><fmt:message key="allOrders.page"/></a>
         </li>
             <li class="nav-item">
                 <a class="nav-link" href="/cars"><fmt:message key="allCars.text"/></a>
             </li>
+        </c:if>
             <li class="nav-item">
                 <a class="nav-link" href="/logout"><fmt:message key="signOut.button"/></a>
             </li>

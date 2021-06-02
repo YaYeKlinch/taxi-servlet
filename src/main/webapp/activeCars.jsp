@@ -17,7 +17,7 @@
                 <div><fmt:message key="car.capacity"/><span>  </span><span> ${car.capacity}</span></div>
                 <div><fmt:message key="car.carType"/><span>  </span><span>${car.carType} </span></div>
                              <c:if test="${sessionScope.LoggedUser.role.name()=='USER'}">
-                                  <div><fmt:message key="car.carStatus"/><span>${car.carStatus} </span></div>
+                                  <div><fmt:message key="car.carStatus"/><span>  </span><span>${car.carStatus} </span></div>
                           </c:if>
                 <c:if test="${sessionScope.LoggedUser.role.name()=='ADMIN'}">
                  <div><fmt:message key="car.carType"/>
