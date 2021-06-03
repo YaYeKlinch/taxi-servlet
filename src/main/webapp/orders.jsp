@@ -10,7 +10,7 @@
 <body>
 <div class="container">
   <%@include file="fragments/navbar.jsp"%>
-  ${saveFilter}
+  <a class="btn btn-outline-primary" href="/all-orders/statistics"><fmt:message key="statistics.button"/></a>
   <form  action="/all-orders" method="get">
     <input type="text" name="filter" value="<c:out value="${prevFilter}"/>"/>
     <div class="form-group">

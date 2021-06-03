@@ -9,7 +9,6 @@
 <body>
 <div class="container">
     <%@include file="fragments/navbar.jsp" %>
-    <a class="btn btn-outline-primary" href="/add-car"><fmt:message key="addCar.button"/></a>
     <div class="grid-container">
         <div class="grid-item car-item">
             <c:forEach items="${cars}" var="car">
