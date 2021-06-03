@@ -14,4 +14,5 @@ public interface CarService {
    void changeCarActivity(Car car);
    List<Car> getAllActiveCars();
    void changeCarStatus(CarStatus carStatus, Car car);
+   boolean updateCar(CarDto carDto , Car car);
 }

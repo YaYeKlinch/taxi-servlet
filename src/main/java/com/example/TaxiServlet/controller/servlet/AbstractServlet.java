@@ -31,12 +31,14 @@ public class AbstractServlet extends HttpServlet {
         urlToGetCommand.put("/active-cars/make-order", new GetMakeOrderPage());
         urlToGetCommand.put("/all-orders", new GetTaxiOrderList());
         urlToGetCommand.put("/user-orders", new GetUsersTaxiOrderList());
+        urlToGetCommand.put("/cars/update-car", new GetUpdateCarPage());
 
         urlToPostCommand.put("/login-page" , new PostLogin());
         urlToPostCommand.put("/logout" , new PostLogin());
         urlToPostCommand.put("/registration" , new PostRegister());
         urlToPostCommand.put("/add-car" , new PostAddCar());
         urlToPostCommand.put("/active-cars/make-order" , new PostMakeOrder());
+        urlToPostCommand.put("/cars/update-car" , new PostCarUpdate());
 
     }
 

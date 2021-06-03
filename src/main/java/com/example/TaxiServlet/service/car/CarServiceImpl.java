@@ -64,4 +64,15 @@ public class CarServiceImpl implements CarService{
             carDao.update(car);
         }
     }
+
+    @Override
+    public boolean updateCar(CarDto carDto, Car car) {
+        try (CarDao carDao = daoFactory.createCarDao()){
+            car.setCarType(carDto.getCarType());
+            car.setCapacity(carDto.getCapacity());
+            car.setPhoto(carDto.getPhoto());
+            car.setName(carDto.getName());
+            return carDao.update(car);
+        }
+    }
 }

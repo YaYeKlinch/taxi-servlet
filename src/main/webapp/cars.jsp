@@ -25,6 +25,7 @@
                         <fmt:message key="returnCar.button"/>
                     </c:if>
             </a>
+                <a class="btn btn-outline-primary" href="/cars/update-car?car_id=${car.id}"></a>
                 </c:forEach>
             </div>
         </div>
