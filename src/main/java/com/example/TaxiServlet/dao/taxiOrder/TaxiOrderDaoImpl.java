@@ -41,7 +41,11 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     private static final String GET_CARS_USERS_BY_ORDER_BY_USER_ID = "SELECT taxi_order.time , taxi_order.arrival," +
             " taxi_order.departure, car.name , user.username, taxi_order.costs  from " +
             " (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) LEFT JOIN user ON" +
-            " taxi_order.user_id = user.id WHERE user.id = ? ";
+            " taxi_order.user_id = user.id WHERE user.id = ? LIMIT ?,?";
+
+    private static final String GET_COUNT_ORDERS_BY_USER = "SELECT COUNT(*)FROM taxi_order" +
+            " WHERE taxi_order.user_id = ?";
+
     public TaxiOrderDaoImpl(Connection connection) {
         super(
                 connection,
@@ -79,11 +83,13 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     }
 
     @Override
-    public List<OrderCarUserDto> getOrderCarUserListByUser(long user_id) {
+    public List<OrderCarUserDto> getOrderCarUserListByUser(long user_id , int count , int size) {
         Mapper<OrderCarUserDto> orderCarUserDtoMapper = new OrderCarUserDtoMapper();
         List<OrderCarUserDto> orderCarUserDtoList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_CARS_USERS_BY_ORDER_BY_USER_ID)) {
             statement.setLong(1, user_id);
+            statement.setInt(2, count);
+            statement.setInt(3, size);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 orderCarUserDtoList.add(orderCarUserDtoMapper.extractFromResultSet(rs));
@@ -120,6 +126,21 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     @Override
     public List<OrderCarUserDto> getOrderCarUserListSortedByCostsDesc(int count, int size ,String filter) {
         return getOrderCarUsersDtoList(count,size,"%"+filter+"%", GET_CARS_USERS_BY_ORDER_SORTED_BY_COSTS_DESC);
+    }
+
+    @Override
+    public long getOrdersCountByUser(long userId) {
+       long ordersCountByUser = 0;
+        try (PreparedStatement statement = connection.prepareStatement(GET_COUNT_ORDERS_BY_USER)) {
+            statement.setLong(1, userId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                ordersCountByUser = rs.getInt("COUNT(*)");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return  ordersCountByUser;
     }
 
 

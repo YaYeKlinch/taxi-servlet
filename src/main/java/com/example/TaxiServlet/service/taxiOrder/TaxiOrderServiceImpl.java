@@ -35,9 +35,9 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     }
 
     @Override
-    public List<OrderCarUserDto> getAllTaxiOrdersByUser(long user_id) {
+    public List<OrderCarUserDto> getAllTaxiOrdersByUser(long user_id , int count , int size) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
-            return  taxiOrderDao.getOrderCarUserListByUser(user_id);
+            return  taxiOrderDao.getOrderCarUserListByUser(user_id , count , size);
         }
     }
 
@@ -65,6 +65,13 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
                 return  taxiOrderDao.getOrderCarUserListSortedByCostsDesc(count,size,filter);
             }
             return  taxiOrderDao.getOrderCarUserListSortedByCostsAsc(count,size,filter);
+        }
+    }
+
+    @Override
+    public long getNumberOfOrdersByUser(long userId) {
+        try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
+            return  taxiOrderDao.getOrdersCountByUser(userId);
         }
     }
 }
