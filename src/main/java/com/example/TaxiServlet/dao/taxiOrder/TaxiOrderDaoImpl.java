@@ -4,6 +4,7 @@ import com.example.TaxiServlet.dao.JDBCDao;
 import com.example.TaxiServlet.dao.Mapper;
 import com.example.TaxiServlet.entity.TaxiOrder;
 import com.example.TaxiServlet.entity.dto.OrderCarUserDto;
+import com.example.TaxiServlet.entity.dto.StatisticDto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,6 +47,13 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     private static final String GET_COUNT_ORDERS_BY_USER = "SELECT COUNT(*)FROM taxi_order" +
             " WHERE taxi_order.user_id = ?";
 
+    private static final String GET_DISTANCE_AND_COSTS_SUM_OF_CARS = "SELECT  car.name " +
+            ", SUM(taxi_order.distance) , SUM(taxi_order.costs)" +
+            "  from (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id) " +
+            " GROUP BY car.name limit ?,?";
+
+    private static final String GET_CAR_COUNT_IN_ORDER = "SELECT  COUNT(*) from (select car.name " +
+            " FROM (car LEFT JOIN  taxi_order ON car.id = taxi_order.car_id)  GROUP BY car.name ) distinct_cars";
     public TaxiOrderDaoImpl(Connection connection) {
         super(
                 connection,
@@ -141,6 +149,37 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
             ex.printStackTrace();
         }
         return  ordersCountByUser;
+    }
+
+    @Override
+    public List<StatisticDto> GetTotalCostsAndDistance(int count, int size) {
+        Mapper<StatisticDto> statisticDtoMapper = new StatisticDtoMapper();
+        List<StatisticDto> statisticDtoList = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_DISTANCE_AND_COSTS_SUM_OF_CARS)) {
+            statement.setInt(1, count);
+            statement.setInt(2, size);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                statisticDtoList.add(statisticDtoMapper.extractFromResultSet(rs));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return statisticDtoList;
+    }
+
+    @Override
+    public long getCarCountInOrders() {
+        long carsCount = 0;
+        try (PreparedStatement statement = connection.prepareStatement(GET_CAR_COUNT_IN_ORDER)) {
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                carsCount = rs.getInt("COUNT(*)");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return  carsCount;
     }
 
 

@@ -4,6 +4,7 @@ import com.example.TaxiServlet.dao.DaoFactory;
 import com.example.TaxiServlet.dao.taxiOrder.TaxiOrderDao;
 import com.example.TaxiServlet.entity.TaxiOrder;
 import com.example.TaxiServlet.entity.dto.OrderCarUserDto;
+import com.example.TaxiServlet.entity.dto.StatisticDto;
 import com.example.TaxiServlet.entity.dto.TaxiOrderDto;
 
 import java.time.LocalDateTime;
@@ -72,6 +73,20 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     public long getNumberOfOrdersByUser(long userId) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
             return  taxiOrderDao.getOrdersCountByUser(userId);
+        }
+    }
+
+    @Override
+    public List<StatisticDto> getStatistics(int count, int size) {
+        try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
+            return  taxiOrderDao.GetTotalCostsAndDistance(count,size);
+        }
+    }
+
+    @Override
+    public long getCarsCountInOrder() {
+        try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
+            return  taxiOrderDao.getCarCountInOrders();
         }
     }
 }

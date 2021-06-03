@@ -78,7 +78,7 @@
 
       <c:if test="${requestScope.page lt requestScope.numberOfPages}">
         <li class="page-item"><a class="page-link"
-                                 href="all-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
+                                 href="/all-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
         </li>
       </c:if>
     </ul>

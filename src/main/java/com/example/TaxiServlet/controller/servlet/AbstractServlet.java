@@ -3,10 +3,7 @@ package com.example.TaxiServlet.controller.servlet;
 import com.example.TaxiServlet.controller.command.Command;
 import com.example.TaxiServlet.controller.command.PostCommand;
 import com.example.TaxiServlet.controller.command.impl.car.*;
-import com.example.TaxiServlet.controller.command.impl.taxiOrder.GetMakeOrderPage;
-import com.example.TaxiServlet.controller.command.impl.taxiOrder.GetTaxiOrderList;
-import com.example.TaxiServlet.controller.command.impl.taxiOrder.GetUsersTaxiOrderList;
-import com.example.TaxiServlet.controller.command.impl.taxiOrder.PostMakeOrder;
+import com.example.TaxiServlet.controller.command.impl.taxiOrder.*;
 import com.example.TaxiServlet.controller.command.impl.user.*;
 
 import javax.servlet.http.HttpServlet;
@@ -32,6 +29,7 @@ public class AbstractServlet extends HttpServlet {
         urlToGetCommand.put("/all-orders", new GetTaxiOrderList());
         urlToGetCommand.put("/user-orders", new GetUsersTaxiOrderList());
         urlToGetCommand.put("/cars/update-car", new GetUpdateCarPage());
+        urlToGetCommand.put("/all-orders/statistics" , new GetStatisticsPage());
 
         urlToPostCommand.put("/login-page" , new PostLogin());
         urlToPostCommand.put("/logout" , new PostLogin());

@@ -2,6 +2,7 @@ package com.example.TaxiServlet.service.taxiOrder;
 
 import com.example.TaxiServlet.entity.TaxiOrder;
 import com.example.TaxiServlet.entity.dto.OrderCarUserDto;
+import com.example.TaxiServlet.entity.dto.StatisticDto;
 import com.example.TaxiServlet.entity.dto.TaxiOrderDto;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface TaxiOrderService {
     List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort ,String filter);
     List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size,String sort ,String filter);
     long getNumberOfOrdersByUser(long userId);
+    List<StatisticDto> getStatistics(int count, int size);
+    long getCarsCountInOrder();
 }
