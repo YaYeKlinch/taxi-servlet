@@ -10,6 +10,13 @@
 <body>
 <div class="container">
   <%@include file="fragments/navbar.jsp"%>
+  ${saveFilter}
+  <form  action="/all-orders" method="get">
+    <input type="text" name="filter" value="<c:out value="${prevFilter}"/>"/>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary"><fmt:message key="submit.button"/></button>
+    </div>
+  </form>
   <table class="table">
     <tr>
       <th>  <fmt:message key="time.order" /></th>
@@ -21,12 +28,12 @@
     </tr>
     <tbody>
     <td>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=Time" ><fmt:message key="sort.desc"/></a>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=Time" ><fmt:message key="sort.asc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=Time&filter=<c:out value="${prevFilter}"/>"><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=Time&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
     </td>
     <td>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=costs" ><fmt:message key="sort.desc"/></a>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=costs" ><fmt:message key="sort.asc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
     </td>
     <c:forEach items="${orders}" var="o" >
       <tr>

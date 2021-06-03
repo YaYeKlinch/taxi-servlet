@@ -9,6 +9,7 @@
 <body>
 <div class="container">
     <%@include file="fragments/navbar.jsp" %>
+    <a class="btn btn-outline-primary" href="/add-car"><fmt:message key="addCar.button"/></a>
     <div class="grid-container">
         <div class="grid-item car-item">
             <c:forEach items="${cars}" var="car">
@@ -26,12 +27,12 @@
                         <label>
                             <select name="status">
                                 <c:forEach var="item" items="${statuses}">
-                                    <option>${item}</option>
+                                    <option <c:if test="${car.carStatus.name()==item}">selected</c:if>>${item}</option>
                                 </c:forEach>
                             </select>
                         </label>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg"><fmt:message key="submit.button"/></button>
+                            <button type="submit" class="btn btn-outline-primary"><fmt:message key="submit.button"/></button>
                         </div>
                     </form>
                 </div>

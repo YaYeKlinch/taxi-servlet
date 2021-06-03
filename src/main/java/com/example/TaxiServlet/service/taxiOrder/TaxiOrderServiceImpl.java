@@ -28,9 +28,9 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     }
 
     @Override
-    public List<OrderCarUserDto> getAllTaxiOrders(int count, int size) {
+    public List<OrderCarUserDto> getAllTaxiOrders(int count, int size ,String filter) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
-            return  taxiOrderDao.getOrderCarUserNotSortedList(count , size);
+            return  taxiOrderDao.getOrderCarUserNotSortedList(count , size, filter);
         }
     }
 
@@ -49,22 +49,22 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     }
 
     @Override
-    public List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort) {
+    public List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort ,String filter) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
             if("DESC".equals(sort)){
-                return  taxiOrderDao.getOrderCarUserListSortedByDataDesc(count,size);
+                return  taxiOrderDao.getOrderCarUserListSortedByDataDesc(count,size, filter);
             }
-          return  taxiOrderDao.getOrderCarUserListSortedByDataAsc(count,size);
+          return  taxiOrderDao.getOrderCarUserListSortedByDataAsc(count,size, filter);
         }
     }
 
     @Override
-    public List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size, String sort) {
+    public List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size, String sort,String filter) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
             if("DESC".equals(sort)){
-                return  taxiOrderDao.getOrderCarUserListSortedByCostsDesc(count,size);
+                return  taxiOrderDao.getOrderCarUserListSortedByCostsDesc(count,size,filter);
             }
-            return  taxiOrderDao.getOrderCarUserListSortedByCostsAsc(count,size);
+            return  taxiOrderDao.getOrderCarUserListSortedByCostsAsc(count,size,filter);
         }
     }
 }

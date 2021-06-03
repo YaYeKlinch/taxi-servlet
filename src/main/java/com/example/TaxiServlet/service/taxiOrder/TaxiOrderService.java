@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface TaxiOrderService {
     boolean createTaxiOrder(TaxiOrderDto taxiOrderDto, long userId , long carId);
-    List<OrderCarUserDto> getAllTaxiOrders(int count, int size);
+    List<OrderCarUserDto> getAllTaxiOrders(int count, int size ,String filter);
     List<OrderCarUserDto> getAllTaxiOrdersByUser(long user_id);
     long getNumberOfOrders();
-    List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort);
-    List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size,String sort);
+    List<OrderCarUserDto> getAllTaxiOrderSortedByTime(int count, int size,String sort ,String filter);
+    List<OrderCarUserDto> getAllTaxiOrderSortedByCosts(int count, int size,String sort ,String filter);
 }
