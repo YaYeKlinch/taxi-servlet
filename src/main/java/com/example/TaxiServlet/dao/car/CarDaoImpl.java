@@ -2,6 +2,7 @@ package com.example.TaxiServlet.dao.car;
 
 import com.example.TaxiServlet.dao.JDBCDao;
 import com.example.TaxiServlet.entity.Car;
+import com.example.TaxiServlet.entity.enums.CarType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,12 @@ import java.util.List;
 
 public class CarDaoImpl extends JDBCDao<Car> implements CarDao {
     private static final String ALL_CARS_BY_ACTIVE = "SELECT * FROM car WHERE active=true";
+
+    private static final String CARS_BY_CAPACITY_AND_TYPE = "SELECT * FROM car WHERE capacity = ? and " +
+            " carType = ?";
+
+    private static  final String CARS_BY_CAPACITY = "SELECT * FROM car WHERE capacity>=?";
+
     public CarDaoImpl(Connection connection) {
         super(
                 connection,
@@ -49,6 +56,31 @@ public class CarDaoImpl extends JDBCDao<Car> implements CarDao {
     public List<Car> getActiveCars() {
         List<Car> cars = null;
         try (PreparedStatement statement = connection.prepareStatement(ALL_CARS_BY_ACTIVE)) {
+            cars = getAllFromStatement(statement);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return cars;
+    }
+
+    @Override
+    public List<Car> getCarsByCapacityAndType(CarType carType, int capacity) {
+        List<Car> cars = null;
+        try (PreparedStatement statement = connection.prepareStatement(CARS_BY_CAPACITY_AND_TYPE)) {
+            statement.setInt(1, capacity);
+            statement.setString(2, carType.name());
+            cars = getAllFromStatement(statement);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return cars;
+    }
+
+    @Override
+    public List<Car> getCarsByCapacity(int capacity) {
+        List<Car> cars = null;
+        try (PreparedStatement statement = connection.prepareStatement(CARS_BY_CAPACITY)) {
+            statement.setInt(1, capacity);
             cars = getAllFromStatement(statement);
         } catch (Exception ex) {
             ex.printStackTrace();

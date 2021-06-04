@@ -8,14 +8,13 @@ import com.example.TaxiServlet.entity.enums.Role;
 
 import java.util.Optional;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final DaoFactory daoFactory = DaoFactory.getInstance();
-
 
     @Override
     public boolean registerUser(UserDto userDto) {
         try (UserDao userDao = daoFactory.createUserDao()) {
-            if (emailExists(userDto.getUsername(),userDao)) {
+            if (emailExists(userDto.getUsername(), userDao)) {
                 throw new EmailExistsException("There is an account with that email address:" + userDto.getUsername());
             }
             User userToCreate = new User();
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService{
             userToCreate.setRole(Role.USER);
             userToCreate.setActive(true);
             return userDao.create(userToCreate);
-    }
+        }
     }
 
     @Override

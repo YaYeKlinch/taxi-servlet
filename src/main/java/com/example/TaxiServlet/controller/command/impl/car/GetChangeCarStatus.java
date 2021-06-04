@@ -10,7 +10,7 @@ import com.example.TaxiServlet.service.car.CarServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 
 public class GetChangeCarStatus implements Command {
-    private static final String URL = "/active-cars";
+    private static final String URL = "/taxi/active-cars";
     CarService carService = new CarServiceImpl();
     @Override
     public String execute(HttpServletRequest request) {

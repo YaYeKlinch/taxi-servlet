@@ -22,6 +22,6 @@ public class GetUsersTaxiOrderList implements Command {
         pagination.setAttributes(request , numberOfOrders);
         List<OrderCarUserDto> taxiOrders = taxiOrderService.getAllTaxiOrdersByUser(user.getId(),pagination.getPage(),pagination.getRecordsPerPage());
         request.setAttribute("orders", taxiOrders);
-        return "usersOrders.jsp";
+        return "/usersOrders.jsp";
     }
 }

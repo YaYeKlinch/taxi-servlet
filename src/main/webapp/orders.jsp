@@ -10,8 +10,8 @@
 <body>
 <div class="container">
   <%@include file="fragments/navbar.jsp"%>
-  <a class="btn btn-outline-primary" href="/all-orders/statistics"><fmt:message key="statistics.button"/></a>
-  <form  action="/all-orders" method="get">
+  <a class="btn btn-outline-primary" href="/taxi/all-orders/statistics"><fmt:message key="statistics.button"/></a>
+  <form  action="/taxi/all-orders" method="get">
     <input type="text" name="filter" value="<c:out value="${prevFilter}"/>"/>
     <div class="form-group">
       <button type="submit" class="btn btn-outline-primary"><fmt:message key="submit.button"/></button>
@@ -28,12 +28,12 @@
     </tr>
     <tbody>
     <td>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=Time&filter=<c:out value="${prevFilter}"/>"><fmt:message key="sort.desc"/></a>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=Time&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
+      <a class="btn btn-outline-primary" href="/taxi/all-orders?sort=DESC&nameBy=Time&filter=<c:out value="${prevFilter}"/>"><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/taxi/all-orders?sort=ASC&nameBy=Time&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
     </td>
     <td>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=DESC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.desc"/></a>
-      <a class="btn btn-outline-primary" href="/all-orders?sort=ASC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
+      <a class="btn btn-outline-primary" href="/taxi/all-orders?sort=DESC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.desc"/></a>
+      <a class="btn btn-outline-primary" href="/taxi/all-orders?sort=ASC&nameBy=costs&filter=<c:out value="${prevFilter}"/>" ><fmt:message key="sort.asc"/></a>
     </td>
     <c:forEach items="${orders}" var="o" >
       <tr>
@@ -56,7 +56,7 @@
     <ul class="pagination">
       <c:if test="${1 ne requestScope.page}">
         <li class="page-item"><a class="page-link"
-                                 href="/all-orders?page=${requestScope.page - 1}&recordsPerPage=${requestScope.recordsPerPage}">
+                                 href="/taxi/all-orders?page=${requestScope.page - 1}&recordsPerPage=${requestScope.recordsPerPage}">
           <fmt:message key="pagination.previous"/></a>
         </li>
       </c:if>
@@ -70,7 +70,7 @@
           </c:when>
           <c:otherwise>
             <li class="page-item"><a class="page-link"
-                                     href="/all-orders?page=${i}&recordsPerPage=${requestScope.recordsPerPage}">${i}</a>
+                                     href="/taxi/all-orders?page=${i}&recordsPerPage=${requestScope.recordsPerPage}">${i}</a>
             </li>
           </c:otherwise>
         </c:choose>
@@ -78,7 +78,7 @@
 
       <c:if test="${requestScope.page lt requestScope.numberOfPages}">
         <li class="page-item"><a class="page-link"
-                                 href="/all-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
+                                 href="/taxi/all-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
         </li>
       </c:if>
     </ul>

@@ -3,6 +3,7 @@
 <html>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="/css/grid.css"/>
 
     <title>Title</title>
 </head>
@@ -20,8 +21,8 @@
                                   <div><fmt:message key="car.carStatus"/><span>  </span><span>${car.carStatus} </span></div>
                           </c:if>
                 <c:if test="${sessionScope.LoggedUser.role.name()=='ADMIN'}">
-                 <div><fmt:message key="car.carType"/>
-                    <form action="/active-cars/change-status">
+                 <div><fmt:message key="car.carStatus"/>
+                    <form action="/taxi/active-cars/change-status">
                         <input type="hidden" name="car_id" value="${car.id}">
                         <label>
                             <select name="status">
@@ -37,7 +38,7 @@
                 </div>
                 </c:if>
                 <c:if test="${car.carStatus.name()=='READY'}">
-                <a class="btn btn-outline-primary" href="/active-cars/make-order?car_id=${car.id}"><fmt:message key="makeOrder.button"/></a>
+                <a class="btn btn-outline-primary" href="/taxi/active-cars/make-order?car_id=${car.id}"><fmt:message key="makeOrder.button"/></a>
                 </c:if>
             </c:forEach>
         </div>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/add-car","/cars/*","/active-cars/change-status","/all-orders/*"})
+@WebFilter(urlPatterns = {"/taxi/add-car","/taxi/cars/*","/taxi/active-cars/change-status","/taxi/all-orders/*"})
 public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws  IOException, ServletException {

@@ -12,6 +12,6 @@ public class GetLogout implements Command {
         HttpSession session = request.getSession();
         session.invalidate();
         request.setAttribute("logout" , true);
-        return "login-page";
+        return "/taxi/login-page";
     }
 }

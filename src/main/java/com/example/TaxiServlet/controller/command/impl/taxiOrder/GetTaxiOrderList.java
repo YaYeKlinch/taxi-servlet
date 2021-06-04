@@ -27,13 +27,13 @@ public class GetTaxiOrderList implements Command {
         pagination.setAttributes(request , numberOfOrders);
         if(request.getParameter("sort")==null){
             request.setAttribute("orders",taxiOrderService.getAllTaxiOrders(pagination.getPage(),pagination.getRecordsPerPage(),filter));
-            return "orders.jsp";
+            return "/orders.jsp";
         }
         if("costs".equals(request.getParameter("nameBy"))){
             request.setAttribute("orders", taxiOrderService.getAllTaxiOrderSortedByCosts(pagination.getPage(),pagination.getRecordsPerPage(),request.getParameter("sort"),filter));
-            return "orders.jsp";
+            return "/orders.jsp";
         }
         request.setAttribute("orders", taxiOrderService.getAllTaxiOrderSortedByTime(pagination.getPage(),pagination.getRecordsPerPage(),request.getParameter("sort"),filter));
-        return "orders.jsp";
+        return "/orders.jsp";
     }
 }

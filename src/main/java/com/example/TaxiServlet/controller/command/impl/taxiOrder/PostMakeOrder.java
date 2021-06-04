@@ -16,7 +16,7 @@ public class PostMakeOrder implements PostCommand {
     TaxiOrderService taxiOrderService= new TaxiOrderServiceImpl();
     private boolean allMatches;
     private static final String URL_ERROR = "/makeOrder.jsp";
-    private static final String URL_SUCCESS = "/cars";
+    private static final String URL_SUCCESS = "/taxi/cars";
     @Override
     public String execute(HttpServletRequest request) {
         User user = getUserId(request);

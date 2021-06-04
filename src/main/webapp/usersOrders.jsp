@@ -37,7 +37,7 @@
     <ul class="pagination">
       <c:if test="${1 ne requestScope.page}">
         <li class="page-item"><a class="page-link"
-                                 href="/user-orders?page=${requestScope.page - 1}&recordsPerPage=${requestScope.recordsPerPage}">
+                                 href="/taxi/user-orders?page=${requestScope.page - 1}&recordsPerPage=${requestScope.recordsPerPage}">
           <fmt:message key="pagination.previous"/></a>
         </li>
       </c:if>
@@ -51,7 +51,7 @@
           </c:when>
           <c:otherwise>
             <li class="page-item"><a class="page-link"
-                                     href="/user-orders?page=${i}&recordsPerPage=${requestScope.recordsPerPage}">${i}</a>
+                                     href="/taxi/user-orders?page=${i}&recordsPerPage=${requestScope.recordsPerPage}">${i}</a>
             </li>
           </c:otherwise>
         </c:choose>
@@ -59,7 +59,7 @@
 
       <c:if test="${requestScope.page lt requestScope.numberOfPages}">
         <li class="page-item"><a class="page-link"
-                                 href="/user-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
+                                 href="/taxi/user-orders?page=${requestScope.page + 1}&recordsPerPage=${requestScope.recordsPerPage}"><fmt:message key="pagination.next"/></a>
         </li>
       </c:if>
     </ul>

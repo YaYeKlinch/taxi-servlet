@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class PostCarUpdate implements PostCommand {
     private static final String URL_ERROR = "/updateCar.jsp";
-    private static final String URL_SUCCESS = "/cars";
+    private static final String URL_SUCCESS = "/taxi/cars";
     CarService carService = new CarServiceImpl();
     private boolean allMatches;
 

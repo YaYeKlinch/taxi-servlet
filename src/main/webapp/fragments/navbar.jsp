@@ -7,21 +7,21 @@
         </li>
         <c:if test="${sessionScope.LoggedUser!=null}">
         <li class="nav-item">
-            <a class="nav-link" href="/active-cars"><fmt:message key="taxi.page"/></a>
+            <a class="nav-link" href="/taxi/active-cars"><fmt:message key="taxi.page"/></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/user-orders"><fmt:message key="myOrders.page"/></a>
+            <a class="nav-link" href="/taxi/user-orders"><fmt:message key="myOrders.page"/></a>
         </li>
         <c:if test="${sessionScope.LoggedUser.role.name()=='ADMIN'}">
         <li class="nav-item">
-            <a class="nav-link" href="/all-orders"><fmt:message key="allOrders.page"/></a>
+            <a class="nav-link" href="/taxi/all-orders"><fmt:message key="allOrders.page"/></a>
         </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cars"><fmt:message key="allCars.text"/></a>
+                <a class="nav-link" href="/taxi/cars"><fmt:message key="allCars.text"/></a>
             </li>
         </c:if>
             <li class="nav-item">
-                <a class="nav-link" href="/logout"><fmt:message key="signOut.button"/></a>
+                <a class="nav-link" href="/taxi/logout"><fmt:message key="signOut.button"/></a>
             </li>
         <li class="nav-item">
             <a href="?language=en">EN</a>
@@ -30,7 +30,7 @@
         </c:if>
         <c:if test="${sessionScope.LoggedUser==null}">
         <li class="nav-item">
-            <a class="nav-link" href="/login-page"><fmt:message key="login.button"/></a>
+            <a class="nav-link" href="/taxi/login-page"><fmt:message key="login.button"/></a>
         </li>
         </c:if>
     </ul>

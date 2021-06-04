@@ -15,6 +15,6 @@ public class GetCarList implements Command {
     public String execute(HttpServletRequest request) {
         List<Car> cars = carService.getAllCars();
         request.setAttribute("cars", cars);
-        return "cars.jsp";
+        return "/cars.jsp";
     }
 }

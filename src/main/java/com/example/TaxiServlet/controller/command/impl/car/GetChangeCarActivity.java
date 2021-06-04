@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 public class GetChangeCarActivity implements Command {
-    private static final String URL = "/cars";
+    private static final String URL = "/taxi/cars";
     private final CarService carService = new CarServiceImpl();
     @Override
     public String execute(HttpServletRequest request) {
