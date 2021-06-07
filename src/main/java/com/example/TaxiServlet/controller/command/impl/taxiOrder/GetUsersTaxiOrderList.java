@@ -15,6 +15,7 @@ import static com.example.TaxiServlet.controller.command.impl.uttils.SessionUtil
 public class GetUsersTaxiOrderList implements Command {
     TaxiOrderService taxiOrderService = new TaxiOrderServiceImpl();
     private final PaginationUtils pagination = new PaginationUtils();
+    private static final String URL =  "/usersOrders.jsp";
     @Override
     public String execute(HttpServletRequest request) {
         User user = getUserId(request);
@@ -22,6 +23,6 @@ public class GetUsersTaxiOrderList implements Command {
         pagination.setAttributes(request , numberOfOrders);
         List<OrderCarUserDto> taxiOrders = taxiOrderService.getAllTaxiOrdersByUser(user.getId(),pagination.getPage(),pagination.getRecordsPerPage());
         request.setAttribute("orders", taxiOrders);
-        return "/usersOrders.jsp";
+        return URL;
     }
 }

@@ -3,7 +3,6 @@ package com.example.TaxiServlet.controller.command.impl.car;
 import com.example.TaxiServlet.controller.command.Command;
 import com.example.TaxiServlet.entity.Car;
 import com.example.TaxiServlet.entity.enums.CarStatus;
-import com.example.TaxiServlet.entity.enums.CarType;
 import com.example.TaxiServlet.service.car.CarService;
 import com.example.TaxiServlet.service.car.CarServiceImpl;
 

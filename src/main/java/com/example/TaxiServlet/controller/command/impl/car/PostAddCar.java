@@ -2,19 +2,12 @@ package com.example.TaxiServlet.controller.command.impl.car;
 
 import com.example.TaxiServlet.controller.command.PostCommand;
 import com.example.TaxiServlet.controller.command.impl.valdators.CarValidator;
-import com.example.TaxiServlet.controller.command.impl.valdators.UserValidator;
-import com.example.TaxiServlet.entity.Car;
 import com.example.TaxiServlet.entity.dto.CarDto;
-import com.example.TaxiServlet.entity.dto.UserDto;
 import com.example.TaxiServlet.entity.enums.CarType;
 import com.example.TaxiServlet.service.car.CarService;
 import com.example.TaxiServlet.service.car.CarServiceImpl;
-import com.example.TaxiServlet.service.user.EmailExistsException;
-import com.example.TaxiServlet.service.user.UserService;
-import com.example.TaxiServlet.service.user.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 public class PostAddCar implements PostCommand {
 

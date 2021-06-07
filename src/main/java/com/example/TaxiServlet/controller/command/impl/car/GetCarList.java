@@ -11,10 +11,11 @@ import java.util.List;
 
 public class GetCarList implements Command {
     private final CarService carService = new CarServiceImpl();
+    private static final String URL = "/cars.jsp";
     @Override
     public String execute(HttpServletRequest request) {
         List<Car> cars = carService.getAllCars();
         request.setAttribute("cars", cars);
-        return "/cars.jsp";
+        return URL;
     }
 }

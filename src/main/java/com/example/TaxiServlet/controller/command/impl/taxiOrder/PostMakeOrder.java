@@ -3,7 +3,6 @@ package com.example.TaxiServlet.controller.command.impl.taxiOrder;
 import com.example.TaxiServlet.controller.command.PostCommand;
 import com.example.TaxiServlet.controller.command.impl.valdators.TaxiOrderValidator;
 import com.example.TaxiServlet.entity.User;
-import com.example.TaxiServlet.entity.dto.CarDto;
 import com.example.TaxiServlet.entity.dto.TaxiOrderDto;
 import com.example.TaxiServlet.service.taxiOrder.TaxiOrderService;
 import com.example.TaxiServlet.service.taxiOrder.TaxiOrderServiceImpl;

@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 public class GetStatisticsPage implements Command {
     TaxiOrderService taxiOrderService = new TaxiOrderServiceImpl();
     private final PaginationUtils pagination = new PaginationUtils();
+    private static final String URL = "/statistics.jsp";
     @Override
     public String execute(HttpServletRequest request) {
         long numberOfCars = taxiOrderService.getCarsCountInOrder();
         pagination.setAttributes(request ,numberOfCars);
         request.setAttribute("cars", taxiOrderService.getStatistics(pagination.getPage(),pagination.getRecordsPerPage()));
-        return "/statistics.jsp";
+        return URL;
     }
 }

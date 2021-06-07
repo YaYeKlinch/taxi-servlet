@@ -1,6 +1,5 @@
 package com.example.TaxiServlet.controller.command.impl.car;
 
-import com.example.TaxiServlet.controller.command.PostCommand;
 import com.example.TaxiServlet.controller.command.RestCommand;
 import com.example.TaxiServlet.entity.Car;
 import com.example.TaxiServlet.entity.dto.FoundCarDto;

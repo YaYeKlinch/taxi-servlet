@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public class GetMakeOrderPage implements Command {
 
+    private static final String URL = "/makeOrder.jsp";
     @Override
     public String execute(HttpServletRequest request) {
-        return "/makeOrder.jsp";
+        return URL;
     }
 }
