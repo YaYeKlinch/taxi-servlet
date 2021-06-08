@@ -5,11 +5,13 @@ import com.example.TaxiServlet.dao.user.UserDao;
 import com.example.TaxiServlet.entity.User;
 import com.example.TaxiServlet.entity.dto.UserDto;
 import com.example.TaxiServlet.entity.enums.Role;
+import com.example.TaxiServlet.service.user.encoder.PasswordEncoder;
 
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private DaoFactory daoFactory = DaoFactory.getInstance();
+    private PasswordEncoder encoder = PasswordEncoder.getInstance();
 
     @Override
     public boolean registerUser(UserDto userDto) {
@@ -21,7 +23,7 @@ public class UserServiceImpl implements UserService {
             userToCreate.setName(userDto.getName());
             userToCreate.setLastName(userDto.getLastName());
             userToCreate.setUsername(userDto.getUsername());
-            userToCreate.setPassword(userDto.getPassword());
+            userToCreate.setPassword(encoder.encode(userDto.getPassword()));
             userToCreate.setRole(Role.USER);
             userToCreate.setActive(true);
             return userDao.create(userToCreate);

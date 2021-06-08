@@ -6,6 +6,7 @@ import com.example.TaxiServlet.controller.command.PostCommand;
 import com.example.TaxiServlet.entity.User;
 import com.example.TaxiServlet.service.user.UserService;
 import com.example.TaxiServlet.service.user.UserServiceImpl;
+import com.example.TaxiServlet.service.user.encoder.PasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class PostLogin implements PostCommand {
 
     private final UserService userService = new UserServiceImpl();
+    private final PasswordEncoder encoder = PasswordEncoder.getInstance();
     private static final String URL_ERROR = "/login.jsp";
     private static final String URL_SUCCESS = "/";
     @Override
@@ -39,7 +41,7 @@ public class PostLogin implements PostCommand {
     public boolean checkRegistered(String username, String password , Optional<User> userOptional) {
         AtomicBoolean matches = new AtomicBoolean(false);
         userOptional.ifPresent(user -> {
-            matches.set(password.equals(user.getPassword()));
+            matches.set(encoder.checkPassword(password, user.getPassword()));
         });
         return matches.get();
     }
