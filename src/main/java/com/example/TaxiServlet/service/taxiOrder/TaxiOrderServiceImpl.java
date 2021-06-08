@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class TaxiOrderServiceImpl implements TaxiOrderService{
-    private final DaoFactory daoFactory = DaoFactory.getInstance();
+    private  DaoFactory daoFactory = DaoFactory.getInstance();
     @Override
     public boolean createTaxiOrder(TaxiOrderDto taxiOrderDto, long userId , long carId) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
@@ -79,7 +79,7 @@ public class TaxiOrderServiceImpl implements TaxiOrderService{
     @Override
     public List<StatisticDto> getStatistics(int count, int size) {
         try (TaxiOrderDao taxiOrderDao = daoFactory.createTaxiOrderDao()) {
-            return  taxiOrderDao.GetTotalCostsAndDistance(count,size);
+            return  taxiOrderDao.getTotalCostsAndDistance(count,size);
         }
     }
 

@@ -152,7 +152,7 @@ private static final String GET_CARS_USERS_BY_ORDER = "SELECT taxi_order.time , 
     }
 
     @Override
-    public List<StatisticDto> GetTotalCostsAndDistance(int count, int size) {
+    public List<StatisticDto> getTotalCostsAndDistance(int count, int size) {
         Mapper<StatisticDto> statisticDtoMapper = new StatisticDtoMapper();
         List<StatisticDto> statisticDtoList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_DISTANCE_AND_COSTS_SUM_OF_CARS)) {

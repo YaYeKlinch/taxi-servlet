@@ -38,7 +38,7 @@
     <c:forEach items="${orders}" var="o" >
       <tr>
         <td>${o.time}</td>
-        <td>${o.costs}</td>
+        <td>${o.costs/100}</td>
         <td>${o.departure}</td>
         <td>${o.arrival}</td>
         <td>${o.carName}</td>

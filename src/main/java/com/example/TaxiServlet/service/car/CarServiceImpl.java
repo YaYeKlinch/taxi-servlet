@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CarServiceImpl implements CarService{
-    private final DaoFactory daoFactory = DaoFactory.getInstance();
+    private  DaoFactory daoFactory = DaoFactory.getInstance();
 
 
     @Override

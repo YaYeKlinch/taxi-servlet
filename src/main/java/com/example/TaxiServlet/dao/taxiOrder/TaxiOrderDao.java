@@ -16,6 +16,6 @@ public interface TaxiOrderDao extends GenericDao<TaxiOrder> {
     List<OrderCarUserDto> getOrderCarUserListSortedByCostsAsc(int count, int size ,String filter);
     List<OrderCarUserDto> getOrderCarUserListSortedByCostsDesc(int count, int size ,String filter);
     long getOrdersCountByUser(long userId);
-    List<StatisticDto> GetTotalCostsAndDistance(int count, int size);
+    List<StatisticDto> getTotalCostsAndDistance(int count, int size);
     long getCarCountInOrders();
 }

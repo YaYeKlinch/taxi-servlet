@@ -9,7 +9,7 @@ import com.example.TaxiServlet.entity.enums.Role;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
-    private final DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
     @Override
     public boolean registerUser(UserDto userDto) {

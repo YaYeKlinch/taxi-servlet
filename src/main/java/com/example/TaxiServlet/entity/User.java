@@ -36,12 +36,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && username.equals(user.username) && password.equals(user.password);
+        return id == user.id && name.equals(user.name) && lastName.equals(user.lastName) && username.equals(user.username) && password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, name, lastName, username, password);
     }
 
     public long getId() {
